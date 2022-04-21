@@ -9,6 +9,13 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class CompositeBlockImpl implements CompositeBlock {
 	
+	private List<BlockImpl> blocks;
+	
+	CompositeBlockImpl(){}
+	
+	CompositeBlockImpl(List<BlockImpl> blocks){
+		this.blocks=blocks;
+	}
 	
 
 	@Override
@@ -25,8 +32,8 @@ public class CompositeBlockImpl implements CompositeBlock {
 
 	@Override
 	public List getBlocks() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.blocks;
 	}
 
 }
