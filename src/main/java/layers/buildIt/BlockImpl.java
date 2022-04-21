@@ -1,14 +1,18 @@
 package layers.buildIt;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope("prototype")
 public class BlockImpl implements Block {
 	
 	private String color;
 	private String material;
+	
+	BlockImpl(){}
 
-	BlockImpl(String color,String material){
+	public BlockImpl(String color, String material){
 		this.color=color;
 		this.material=material;
 	}
