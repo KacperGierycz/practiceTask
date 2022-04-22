@@ -20,67 +20,19 @@ import org.springframework.context.ApplicationContext;
 class BuildItApplicationTests {
 
 
-@Value("red")
-private String color1;
-
-
-@Value("Rasin")
-private String material1;
-
-@Value("${block.color}")
-private String color2;
-
-@Value("${block.material}")
-private String material2;
-
-
-//@Autowired
-//BlockDatabase blockDatabase;
-
-//private BlockImpl redBrick=blockDatabase.getRedBrick();
-
-//BlockImpl blockImpl=new BlockImpl(color1,material1);
-
 BlockDatabase DataBaseMock = mock(BlockDatabase.class);
 	
 	@Test
-	void contextLoads() {
-		
-		System.out.println(color1);
-		System.out.println(material1);
-		System.out.println(color2);
-		System.out.println(material2);
-		
-		
-		
-		
-		ApplicationContext applicationContext=	SpringApplication.run(BuildItApplication.class);
-		
-		ContextTester contextT = applicationContext.getBean(ContextTester.class);
-		
-		BlockImpl blockImpl = applicationContext.getBean(BlockImpl.class);
-		
-		
-		
-	//	BlockImpl redBrick= applicationContext.getBean(redBrickInitializer.class);
-		
-		System.out.println(blockImpl.getColor());
-		
-		System.out.println(contextT.getName());
-		
-
+	void getColorAndMaterialFromBlockTest() {
 		
 		when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("red","brick"));
-		
 		BlockImpl rb=DataBaseMock.getBlock();
-		System.out.println(rb.getColor());
-		
-		 when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("red","brick"));
-		
+		assertEquals("red",rb.getColor());
+		assertEquals("brick",rb.getMaterial());
 	}
 	
 	@Test
-	public void getCompositeBlock() {
+	public void getCompositeBlockSizeOfBlockListTest() {
 		
 		 when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("red","brick"));
 		 BlockImpl rb=DataBaseMock.getBlock();
@@ -90,12 +42,9 @@ BlockDatabase DataBaseMock = mock(BlockDatabase.class);
 		List<BlockImpl> blockList=new ArrayList<>();
 		blockList.add(rb);
 		blockList.add(wb);
-		System.out.println("From Composite block");
-		System.out.println(rb.getColor());
-		System.out.println(wb.getColor());
 		when(DataBaseMock.getCompositeBlock()).thenReturn(new CompositeBlockImpl(blockList));
-		
-		System.out.println(DataBaseMock.getCompositeBlock());
+		CompositeBlock bc=DataBaseMock.getCompositeBlock();
+		assertEquals(2,bc.getBlocks().size());
 	
 	}
 	
