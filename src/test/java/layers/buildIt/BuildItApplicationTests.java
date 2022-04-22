@@ -39,7 +39,7 @@ BlockDatabase DataBaseMock = mock(BlockDatabase.class);
 		when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("white","wood"));
 		BlockImpl wb=DataBaseMock.getBlock();
 		 
-		List<Block> blockList=new ArrayList<>();
+		List<BlockImpl> blockList=new ArrayList<>();
 		blockList.add(rb);
 		blockList.add(wb);
 		when(DataBaseMock.getCompositeBlock()).thenReturn(new CompositeBlockImpl(blockList));
@@ -56,11 +56,20 @@ BlockDatabase DataBaseMock = mock(BlockDatabase.class);
 		when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("white","wood"));
 		BlockImpl wb=DataBaseMock.getBlock();
 		 
-		List<Block> blockList=new ArrayList<>();
+		List<BlockImpl> blockList=new ArrayList<>();
 		blockList.add(rb);
 		blockList.add(wb);
+
 		when(DataBaseMock.getCompositeBlock()).thenReturn(new CompositeBlockImpl(blockList));
 		CompositeBlock bc=DataBaseMock.getCompositeBlock();
+
+		List<Block> blockListWithComposite=new ArrayList<>();
+		blockListWithComposite.add(rb);
+		blockListWithComposite.add(wb);
+		blockListWithComposite.add(bc);
+		when(DataBaseMock.getWall()).thenReturn(new Wall(blockListWithComposite));
+		Wall wall=DataBaseMock.getWall();
+		assertEquals(3,wall.count());
 		
 	}
 

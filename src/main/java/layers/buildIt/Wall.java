@@ -35,7 +35,7 @@ public int count() {
 	
 	
 
-	return 0;
+	return blocks.size();
 }
 }
 

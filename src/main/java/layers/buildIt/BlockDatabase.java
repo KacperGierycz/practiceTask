@@ -9,5 +9,6 @@ public interface BlockDatabase {
 	
 	BlockImpl getBlock();
 	CompositeBlockImpl getCompositeBlock();
+	Wall getWall();
 	
 }
