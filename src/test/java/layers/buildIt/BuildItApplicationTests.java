@@ -34,12 +34,12 @@ BlockDatabase DataBaseMock = mock(BlockDatabase.class);
 	@Test
 	public void getCompositeBlockSizeOfBlockListTest() {
 		
-		 when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("red","brick"));
-		 BlockImpl rb=DataBaseMock.getBlock();
-		 when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("white","wood"));
-		 BlockImpl wb=DataBaseMock.getBlock();
+		when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("red","brick"));
+		BlockImpl rb=DataBaseMock.getBlock();
+		when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("white","wood"));
+		BlockImpl wb=DataBaseMock.getBlock();
 		 
-		List<BlockImpl> blockList=new ArrayList<>();
+		List<Block> blockList=new ArrayList<>();
 		blockList.add(rb);
 		blockList.add(wb);
 		when(DataBaseMock.getCompositeBlock()).thenReturn(new CompositeBlockImpl(blockList));
@@ -49,8 +49,19 @@ BlockDatabase DataBaseMock = mock(BlockDatabase.class);
 	}
 	
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void wallConstructorTest() {
+		
+		when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("red","brick"));
+		BlockImpl rb=DataBaseMock.getBlock();
+		when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("white","wood"));
+		BlockImpl wb=DataBaseMock.getBlock();
+		 
+		List<Block> blockList=new ArrayList<>();
+		blockList.add(rb);
+		blockList.add(wb);
+		when(DataBaseMock.getCompositeBlock()).thenReturn(new CompositeBlockImpl(blockList));
+		CompositeBlock bc=DataBaseMock.getCompositeBlock();
+		
 	}
 
 }

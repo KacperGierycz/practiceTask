@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class CompositeBlockImpl implements CompositeBlock {
 	
-	private List<BlockImpl> blocks;
+	private List<Block> blocks;
 	
 	CompositeBlockImpl(){}
 	
-	CompositeBlockImpl(List<BlockImpl> blocks){
+	CompositeBlockImpl(List<Block> blocks){
 		this.blocks=blocks;
 	}
 	
