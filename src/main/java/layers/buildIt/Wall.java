@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
-public class Wall implements Structure {
+public class Wall implements Structure,CompositeBlock {
 	
 private List blocks;
 
@@ -33,9 +33,27 @@ public List findBlocksByMaterial(String material) {
 @Override
 public int count() {
 	
-	
-
 	return blocks.size();
 }
+
+@Override
+public String getColor() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public String getMaterial() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public List getBlocks() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
 }
 

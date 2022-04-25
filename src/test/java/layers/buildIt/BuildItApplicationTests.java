@@ -39,7 +39,7 @@ BlockDatabase DataBaseMock = mock(BlockDatabase.class);
 		when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("white","wood"));
 		BlockImpl wb=DataBaseMock.getBlock();
 		 
-		List<BlockImpl> blockList=new ArrayList<>();
+		List<Block> blockList=new ArrayList<>();
 		blockList.add(rb);
 		blockList.add(wb);
 		when(DataBaseMock.getCompositeBlock()).thenReturn(new CompositeBlockImpl(blockList));
@@ -56,7 +56,7 @@ BlockDatabase DataBaseMock = mock(BlockDatabase.class);
 		when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("white","wood"));
 		BlockImpl wb=DataBaseMock.getBlock();
 		 
-		List<BlockImpl> blockList=new ArrayList<>();
+		List<Block> blockList=new ArrayList<>();
 		blockList.add(rb);
 		blockList.add(wb);
 
@@ -72,5 +72,46 @@ BlockDatabase DataBaseMock = mock(BlockDatabase.class);
 		assertEquals(3,wall.count());
 		
 	}
+	
+	@Test
+	public void getColorNoCompositeTest() {
+		when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("red","brick"));
+		BlockImpl rb=DataBaseMock.getBlock();
+		when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("white","wood"));
+		BlockImpl wb=DataBaseMock.getBlock();
+		 
+		List<Block> blockList=new ArrayList<>();
+		blockList.add(rb);
+		blockList.add(wb);
+		when(DataBaseMock.getCompositeBlock()).thenReturn(new CompositeBlockImpl(blockList));
+		CompositeBlock bc=DataBaseMock.getCompositeBlock();
+		assertEquals("red, white",bc.getColor());
+		}
+		
+	@Test
+	public void getColorCompositeTest() {
+		when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("red","brick"));
+		BlockImpl rb=DataBaseMock.getBlock();
+		when(DataBaseMock.getBlock()).thenReturn(new BlockImpl("white","wood"));
+		BlockImpl wb=DataBaseMock.getBlock();
+		 
+		List<Block> blockList=new ArrayList<>();
+		blockList.add(rb);
+		blockList.add(wb);
 
+		when(DataBaseMock.getCompositeBlock()).thenReturn(new CompositeBlockImpl(blockList));
+		CompositeBlock bc=DataBaseMock.getCompositeBlock();
+
+		List<Block> blockListWithComposite=new ArrayList<>();
+		blockListWithComposite.add(rb);
+		blockListWithComposite.add(wb);
+		blockListWithComposite.add(bc);
+		when(DataBaseMock.getCompositeBlock()).thenReturn(new CompositeBlockImpl(blockListWithComposite));
+		Block compositeBlock=DataBaseMock.getCompositeBlock();
+		
+		
+		assertEquals("red, white, red, white",compositeBlock.getColor());
+		
+	}
+	
 }
